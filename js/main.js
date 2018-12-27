@@ -1,4 +1,8 @@
+CONTENDOR_MAPA.addEventListener("mousemove", function() {
 
+    var lblsCoordenadas = document.getElementsByClassName('esri-coordinate-conversion__display');
+
+});
 
 CONTENDOR_MAPA.addEventListener('wheel', function () {
 
@@ -10,8 +14,9 @@ CONTENDOR_MAPA.addEventListener('wheel', function () {
 
 CONTENDOR_MAPA.addEventListener('dblclick', function () {
     zoom(120);
-  });
-  function crearVista(MapView) {
+});
+
+function crearVista(MapView) {
     view = new MapView({
         container: "viewDiv",
         map: map,
@@ -24,10 +29,12 @@ CONTENDOR_MAPA.addEventListener('dblclick', function () {
     });
 
     view.on("mouse-wheel", function (event) {
-    
+
         event.stopPropagation();    // Bloquea la rueda del ratón para hacer zoom
     });
 }
+
+
 
 function crearExtensionMapa(Extent, SpatialReference) {
     extent = new Extent({
@@ -53,20 +60,20 @@ function cargarCapaBase(Basemap, TileLayer) {
 }
 
 
-function zoom( delta ) {
+function zoom(delta) {
 
     if (delta > 0) {
-       
-        if (indEscalaActual < ESCALAS_RECOMENDADAS.length-1) {
+
+        if (indEscalaActual < ESCALAS_RECOMENDADAS.length - 1) {
             console.log('Aumentar escala');
             indEscalaActual++;
             setEscala(indEscalaActual);
-        }      
+        }
     } else {
         if (indEscalaActual > 0) {
             console.log('Disminuir escala');
-            indEscalaActual--;    
-            setEscala(indEscalaActual);  
+            indEscalaActual--;
+            setEscala(indEscalaActual);
         }
     }
 }

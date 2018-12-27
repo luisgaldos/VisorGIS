@@ -38,6 +38,12 @@ footer span {
     padding: 2px;
 }
 
+/********WIDGET COORDENADAS**********/
+.esri-coordinate-conversion__display {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 /********** CLASES **************/
 .logo {
     color: #000;
