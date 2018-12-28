@@ -19,7 +19,7 @@ require([
 
     cargarCapaBase(serviciosOrtofotos.length - 1, Basemap, TileLayer);
 
-    crearVista(MapView);
+    crearVista2D(MapView);
     setEscala(0);
 
     SELECT_CAPAS_BASE.addEventListener('change', function () {

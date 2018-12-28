@@ -20,7 +20,7 @@ function addListeners() {
 }
 function crearVista2D(MapView) {
     vista2D = new MapView({
-        container: "2DviewDiv",
+        container: "divMapa",
         map: mapa,
         scale: app.escala,
         ui: app.componentes,

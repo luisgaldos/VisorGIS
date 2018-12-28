@@ -8,7 +8,7 @@ const ESCALAS_RECOMENDADAS = [300000.0, 200000.0, 100000.0, 50000.0, 25000.0, 10
 
 //  ELEMENTOS DEL DOM    //
 // -------------------- //
-const CONTENDOR_MAPA = document.getElementById('viewDiv');
+const CONTENDOR_MAPA = document.getElementById('divMapa');
 const CONTENDOR_BUSCADOR = document.getElementById('divBuscador');
 const CONTENDOR_COORDENADAS = document.getElementById('divCoordenadas');
 const CONTENEDOR_ENCUENTRAME = document.getElementById('divEncuentrame');
