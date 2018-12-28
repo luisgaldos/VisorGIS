@@ -1,48 +1,30 @@
-function inicializarApp() {
+require(["esri/geometry/Extent", "esri/geometry/SpatialReference"], function (Extent, SpatialReference) {
 
-    app = {
-        center: [LONGITUD_INICIAL, LATITUD_INICIAL],  // Longitud, latitud
-        scale: ESCALAS_RECOMENDADAS,
-        basemap: null,
-        viewPadding: {
-            top: 50,
-            bottom: 0
-        },
-        uiComponents: ["zoom", "compass", "attribution"],
-        mapView: null,
-        sceneView: null,
-        minScale: ESCALAS_RECOMENDADAS[ESCALAS_RECOMENDADAS.length - 1],
-        maxScale: ESCALAS_RECOMENDADAS[0]
-    };
+    crearExtensionMapa(Extent, SpatialReference);
 
-}
-
-inicializarApp();
+});
 
 require([
     "esri/Map",
     "esri/Basemap",
     "esri/layers/TileLayer",
-    "esri/geometry/Extent",
-    "esri/geometry/SpatialReference",
+    
     "esri/views/MapView"
-], function (Map, Basemap, TileLayer, Extent, SpatialReference, MapView) {
+], function (Map, Basemap, TileLayer, MapView) {
 
-    var basemap = new Basemap({
-        baseLayers: [
-            new TileLayer('http://arcgis.bizkaia.net/arcgis/rest/services/ORTOFOTOS/GOBIERNO_VASCO_2017_AMPLIADO/MapServer')
-        ]
+    mapa = new Map({
+        //basemap: basemap,
+        extent: extension
     });
 
-    crearExtensionMapa(Extent, SpatialReference);
-
-    map = new Map({
-        basemap: basemap,
-        extent: extent
-    });
+    cargarCapaBase(serviciosOrtofotos.length - 1, Basemap, TileLayer);
 
     crearVista(MapView);
     setEscala(0);
+
+    SELECT_CAPAS_BASE.addEventListener('change', function () {
+        cargarCapaBase(this.selectedIndex, Basemap, TileLayer)
+    });
 
 });
 
@@ -50,10 +32,43 @@ require([
 require(["esri/widgets/CoordinateConversion"], function (CoordinateConversion) {
 
     var widgetCoordenadas = new CoordinateConversion({
-        view: view
+        view: app.vista2D,
+        multipleConversions: false,
+        container: CONTENDOR_COORDENADAS
     });
 
-    // Adds widget in the bottom left corner of the view
-    view.ui.add(widgetCoordenadas, "bottom-right");
 });
+
+// CAPA DE DIBUJO
+require(["esri/widgets/Sketch", "esri/layers/GraphicsLayer"], function (Sketch, GraphicsLayer) {
+
+    const capaGrafica = new GraphicsLayer(); // Crear una capa de dibujo
+    mapa.layers.add(capaGrafica);    // Agregarla al mapa
+    var herramientasDibujo = new Sketch({
+        layer: capaGrafica,
+        view: vista2D,
+        container: "divHerramientasDibujo"
+    });
+
+    console.log("%o", herramientasDibujo)
+
+});
+
+require(["esri/widgets/DistanceMeasurement2D", "esri/widgets/AreaMeasurement2D"], function (DistanceMeasurement2D, AreaMeasurement2D) {
+
+    widgetMedicionActivo = null;
+
+    BTN_MEDIR_DISTANCIA_2D.addEventListener("click", function () {
+        // TODO: medir distancia
+    });
+
+    BTN_MEDIR_AREA_2D.addEventListener("click", function () {
+        // TODO: medir area 
+    });
+
+
+});
+
+
+
 

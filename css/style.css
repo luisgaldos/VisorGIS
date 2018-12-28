@@ -3,6 +3,7 @@ html, body{
     margin: 0;
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 #viewDiv {
@@ -14,6 +15,13 @@ html, body{
 /********** NAV STYLES **************/
 nav {
     background-color: #F00;
+    width: 100%;
+}
+
+nav button, nav select {
+    padding: 1vh;
+    border-radius: 1vh;
+    background-color: #FFF;
 }
 
 nav ul, li {
@@ -24,19 +32,41 @@ nav ul, li {
 
 li {
     vertical-align: middle;
+    padding-top: 1vh;
+}
+
+button.activo {
+    background: #ff0000;
 }
 
 /******* FOOTER STYLES ***********/
 footer {
     position: absolute;
-    bottom: 5px;
-    left: 5px;
+    bottom: 0;
+    left: 0;
+    max-height: 100px;
 }
 
-footer span {
+footer #divEscala {
+    padding: 0.5em;
     background-color: #CCC;
-    padding: 2px;
+    font-weight: bold;
 }
+
+
+footer #divCoordenadas__list-item-0 {
+    background-color: #CCC;
+}
+
+footer #divCoordenadas__list-item-0 > div {
+    width: 350px;
+    text-align: center;
+}
+
+footer #divCoordenadas__list-item-0 > ul > li > span {
+ background-color: #FFF;
+}
+
 
 /********WIDGET COORDENADAS**********/
 .esri-coordinate-conversion__display {
